@@ -4,6 +4,8 @@
 
 // @ts-check
 
+const { TextChannel } = require('discord.js')
+
 let globals = {
     guild: null,
     chan: null,
@@ -115,6 +117,16 @@ function setup() {
     document.getElementById('channelPlaceholder').removeChildren()
     changeIntent(globals.intents.setting)
     login(localStorage.getItem('token'))
+
+    const messageBox = document.getElementById('messageBox')
+    messageBox.onkeydown = keyevent => {
+        if (globals.chan instanceof TextChannel) {
+            if (keyevent.key === 'Enter' && !keyevent.shiftKey && !keyevent.ctrlKey) {
+                globals.chan.send(messageBox.innerText)
+                messageBox.innerText = ''
+            }
+        }
+    }
 }
 
 window.onload = () => { setup() };

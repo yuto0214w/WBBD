@@ -30,11 +30,16 @@ function displayGuild(amount, homeSep, left) {
 		guild.classList.add('guild')
 		guild.style.top = `${homeSep.offsetTop + 13 + (i) * 65}px`
 
-		let guildAcronym = createElement('div', {});
-		guildAcronym.classList.add('guildAcronym')
-		guildAcronym.innerText = g.nameAcronym
+		const iconURL = g.iconURL({ size: 64 })
+		if (iconURL) {
+			guild.style['background-image'] = `url(${iconURL})`
+		} else {
+			let guildAcronym = createElement('div', {});
+			guildAcronym.classList.add('guildAcronym')
+			guildAcronym.innerText = g.nameAcronym
 
-		guild.appendChild(guildAcronym)
+			guild.appendChild(guildAcronym)
+		}
 		left.appendChild(guild)
 		i++;
 	});

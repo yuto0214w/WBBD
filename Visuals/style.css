@@ -55,6 +55,7 @@ span:focus {
 
 .guild {
     background-color: #36393f;
+    background-size: cover;
     border-radius: 50px;
     padding-top: 20px;
     text-align: center;
